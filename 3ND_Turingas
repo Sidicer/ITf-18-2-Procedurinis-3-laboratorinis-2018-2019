@@ -36,4 +36,4 @@ antrasTarpas-1 * 1 r antrasTarpas ; Po antro tarpo radus 1, ji prieš tai pakeit
 antrasTarpas-A * A r salinam-A    ; Po antro tarpo radus A, ji prieš tai pakeitė tarpu, o šalia įrašo A ir pašalina šalia esančią
 
 ; Išbandyti morphett.info turingo mašinoje kodą:
-; http://morphett.info/turing/?3688662e9b8428698d53421418bf299e
+; http://morphett.info/turing/?16d3b8be9b9a06c3762cb55e1b2ed76b
