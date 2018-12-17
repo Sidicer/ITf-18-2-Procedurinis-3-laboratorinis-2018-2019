@@ -1,53 +1,36 @@
-0 P P r 11 ;pati pradinė operacija
+; Pradines/Pagalbines funkcijos
+0 P * r pradzia
+salinam-P P _ r 0
+salinam-A A _ l iPradzia
+iPradzia * * l iPradzia
+iPradzia P * r pradzia
 
-11 1 1 r 1 ;operacijos tikrinančios ar po P yra tarpas, ir jei taip, jį panaikina
-11 0 0 r 1
-11 _ P l 14
+; Patikrinam ar po P nėra tarpu
+; jeigu yra - juos pašalinam
+; jeigu nėra - einam toliau
+pradzia _ P l salinam-P ; pašalinam tarpus po P su pagalbine funkcija
+pradzia 1 * r toliau    ; jeigu nebuvo tarpo einam toliau
+pradzia 0 * r toliau    ; jeigu nebuvo tarpo einam toliau
 
-14 P _ r 0 
+toliau 1 * r toliau
+toliau 0 * r toliau
+toliau _ * r pirmasTarpas
+toliau A * * halt
 
-1 1 1 r 1 ;operacijos tikrinančios ar yra tarpas
-1 0 0 r 1 
-1 _ _ r 2
+pirmasTarpas _ * r antrasTarpas
+pirmasTarpas 1 * r toliau
+pirmasTarpas 0 * r toliau
+pirmasTarpas A * l pirmasTarpas-A
 
-2 _ _ l 3 ;jei randamas tarpas, tada žiūrima, ar po jo yra dar vienas tarpas, jei taip, tada grįžtama į pradžią, ir visi simboliai  pastumiami per viena į prieki
-2 1 1 r 1
-2 0 0 r 1
-1 A A l 12
-2 A A l 12
+pirmasTarpas-A 0 * r halt
+pirmasTarpas-A 1 * r halt
+pirmasTarpas-A _ A r salinam-A
 
-12 _ A r 13 ;operacijos tikrinančios ar prieš A yra tarpas, ir jei taip grįžta atgal bei panaikina jį
-12 1 * * halt 
-12 0 * * halt
+antrasTarpas 0 _ l antrasTarpas-0
+antrasTarpas 1 _ l antrasTarpas-1
+antrasTarpas A * l antrasTarpas-A
+antrasTarpas _ * r antrasTarpas
 
-13 A _ * halt
-
-3 * * l 3 ;operacijos einančios iki pat pradžios - "P"
-3 P _ r 4
-4 1 P r 5
-4 0 P r 6
-4 _ P r 7
-
-5 1 1 r 8
-5 0 1 r 9
-5 _ 1 r 10
-
-6 1 0 r 8 ;6-10 būsenos skirtos kiekvieno simbolio pastūmimui į priekį
-6 0 0 r 9
-6 _ 0 r 10
-
-7 1 _ r 8
-7 0 _ r 9
-7 _ _ r 10
-
-8 1 1 r 8
-8 0 1 r 9
-8 _ 1 r 10
-
-9 0 0 r 9
-9 1 0 r 8
-9 _ 0 r 10
-
-10 0 _ r 9
-10 1 _ r 8
-10 _ _ r 2
+antrasTarpas-0 * 0 r antrasTarpas
+antrasTarpas-1 * 1 r antrasTarpas
+antrasTarpas-A * A r salinam-A
